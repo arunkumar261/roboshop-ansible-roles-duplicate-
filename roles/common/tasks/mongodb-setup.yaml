@@ -29,7 +29,7 @@
 - name: Loading the data to the catalogue
   ansible.builtin.shell:
     cmd: "mongo --host mongodb.arundev.online < /app/schema/{{component}}.js"
-  when: product_count.stdout == "0" and component == "catalogue"
+  when: product_count.stdout == "0"
 
 
 - name : loading the data to the user
