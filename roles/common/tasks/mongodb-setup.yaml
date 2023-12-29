@@ -13,23 +13,13 @@
   register : product_count    #storing the list of or output of catalogue.service file products in product_count variable
   when : component="catalogue"
 
-# - name : print the list of products stored in product_count variable
-#   ansible.builtin.debug:
-#     msg : "products list is : {{product_count}}"
-
-
-
-
-
 #for user
-- name : get the users count present in user.service file
-      ansible.builtin.shell:  mongo --host mongodb.arundev.online --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
-      register : user_count    #storing the list of or output of catalogue.service file users in user_count variable
-      when : component="user"
+- name : "get the users count present in user.service file"
+  ansible.builtin.shell:  mongo --host mongodb.arundev.online --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
+  register : user_count    #storing the list of or output of catalogue.service file users in user_count variable
+  when : component="user"
 
-    # - name : print the list of users stored in user_count variable
-    #   ansible.builtin.debug:
-    #     msg : "users list is : {{user_count}}"
+  
 
 - name : loading the data to the catalogue
   ansible.builtin.shell:      # mongo --host mongodb.arundev.online < /app/schema/catalogue.service
