@@ -8,7 +8,7 @@
     name : mongodb-org-shell
     state: present
 
-- name : "get the categories/products count present in catalogue.service file"
+- name : get the categories/products count present in catalogue.service file
   ansible.builtin.shell:  mongo --host mongodb.arundev.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
   register : product_count    #storing the list of or output of catalogue.service file products in product_count variable
   when : component="catalogue"
