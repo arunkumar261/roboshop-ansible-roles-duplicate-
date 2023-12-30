@@ -3,7 +3,7 @@
     name: nginx
     state: present
 
-SS
+
 
 - name: Remove file html dir(delete file)
   ansible.builtin.file:
