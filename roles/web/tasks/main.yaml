@@ -1,0 +1,50 @@
+- name: Install nginx
+  ansible.builtin.package:
+    name: nginx
+    state: present
+
+- name : start and enable nginx
+  ansible.builtin.service:
+    name : nginx
+    state : started
+    enabled : yes
+
+
+- name: Remove file (delete file)
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/*
+    state: absent
+
+- name : downloading the application code of user
+  ansible.builtin.get_url:
+    url: https://roboshop-builds.s3.amazonaws.com/web.zip
+    dest: /tmp
+
+
+- name : unzipping the user.js file
+  ansible.builtin.unarchive:
+    src: /tmp/web.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
+# - name: copying the roboshop.conf file
+#   ansible.builtin.copy:
+#     src : roboshop.conf
+#     dest: /etc/nginx/default.d/roboshop.conf 
+
+
+#for roles concept
+
+- name: copying the roboshop.conf file
+  ansible.builtin.template:
+    src : roboshop.conf.j2
+    dest: /etc/nginx/default.d/roboshop.conf 
+  notify : 
+  - Restart nginx            #this name and - name : task present in main.yaml of handlers should be same
+
+
+# we will write below task in main.yaml of handlers folder on ly when change made to any task/configuration then only restart task will run
+# - name: Restart service nginx, in all cases
+#   ansible.builtin.service:
+#     name: nginx 
+#     state: restarted
