@@ -1,6 +1,6 @@
 MONGODB_HOST : mongodb.arundev.online
 REDIS_HOST : redis.arundev.online
-CATALOGUE_HOST : catalogue.arunvdev.online
+CATALOGUE_HOST : catalogue.arundev.online
 USER_HOST: user.arundev.online
 CART_HOST: cart.arundev.online
 # WEB_HOST: WEB.arundev.online      no need this
