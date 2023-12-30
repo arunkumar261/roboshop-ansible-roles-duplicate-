@@ -4,10 +4,10 @@
     state: present
 
 
-# - name : start and enable nginx
-#   ansible.builtin.service:
-#     name : nginx
-#     state : started
+- name : start and enable nginx
+  ansible.builtin.service:
+    name : nginx
+    state : started
 
 - name: Remove file html dir(delete file)
   ansible.builtin.file:
@@ -44,9 +44,7 @@
     src : roboshop.conf.j2
     dest: /etc/nginx/default.d/roboshop.conf 
   notify:
-    - Debug message before handler
-    - Restart nginx 
-    - Debug message agter handler  
+    - Restart nginx  
     
 
  #above restartnginx this name and - name : task present in main.yaml of handlers should be same
