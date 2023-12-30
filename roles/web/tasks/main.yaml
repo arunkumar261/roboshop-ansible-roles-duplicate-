@@ -43,8 +43,8 @@
   ansible.builtin.template:
     src : roboshop.conf.j2
     dest: /etc/nginx/default.d/roboshop.conf 
-  # notify: 
-  #   - Restart nginx    
+  notify:
+  - Restart nginx   
 
  #above restartnginx this name and - name : task present in main.yaml of handlers should be same
 
@@ -57,8 +57,3 @@
 #     state: restarted
 
 
-- name : Restart nginx
-  ansible.builtin.service:
-    name: nginx 
-    state: restarted
-    enabled : yes
