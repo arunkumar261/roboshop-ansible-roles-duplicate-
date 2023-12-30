@@ -7,7 +7,7 @@
   ansible.builtin.command : "{{item}}"
   loop : 
   - go mod init dispatch
-  - go set
+  - go get
   - go build
   args:
     chdir: /app
