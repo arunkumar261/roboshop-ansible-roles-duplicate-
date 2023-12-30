@@ -30,8 +30,8 @@
 - name: copying the roboshop.conf file
   ansible.builtin.template:
     src : roboshop.conf.j2
-    dest: /etc/nginx/default.d/roboshop.conf 
+    dest: /etc/nginx/default.d/roboshop.conf
   notify :
-  - Restart nginx  
+  - Restart nginx
 
 
