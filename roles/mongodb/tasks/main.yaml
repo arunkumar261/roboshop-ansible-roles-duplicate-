@@ -7,7 +7,7 @@
   ansible.builtin.package:
     name : mongodb-org
     state : present
-  
+
 - name : Enable and start sysyemctl
   ansible.builtin.service:
     name : mongod
