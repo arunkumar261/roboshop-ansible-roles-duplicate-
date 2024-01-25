@@ -1,14 +1,20 @@
-- name : installing redis repo file as a rpm
-  ansible.builtin.command:
-    cmd: "dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y"
+# - name : installing redis repo file as a rpm
+#   ansible.builtin.command:
+#     cmd: "dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y"
 
-
+- name: install remi release
+  ansible.builtin.dnf: # check pacakge will work not
+    name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    state: present
+    disable_gpg_check: true
+    
 - name : enabling the redis:remi-6.2 package 
-  ansible.builtin.command :
-    cmd: "dnf module enable redis:remi-6.2 -y"
+  # ansible.builtin.command :
+  #   cmd: "dnf module enable redis:remi-6.2 -y"
+  ansible.builtin.command: dnf module enable redis:remi-6.2 -y
 
 - name: Install redis package
-  ansible.builtin.package:
+  ansible.builtin.dnf:
     name: redis
     state: present
 
@@ -19,7 +25,7 @@
     replace: '0.0.0.0'
 
 - name : enable and start the redis
-  ansible.builtin.systemd_service:
+  ansible.builtin.service:
     name : redis
-    state : started
-    enabled : true
+    state : restarted
+    enabled : yes
